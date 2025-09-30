@@ -11,27 +11,31 @@ class BookController extends Controller
      // GET /books
     public function index(Request $request)
     {
-        // validasi input (opsional, filter pencarian)
-        $request->validate([
-            'title' => 'nullable|string',
-            'author' => 'nullable|string',
-            'category' => 'nullable|string',
-        ]);
-
-        // tindakan setelah validasi
         $query = Book::query();
+
+
         if ($request->has('title')) {
-            $query->where('title', 'like', "%{$request->title}%");
+            $title = $request->input('title');
+            $query->where('title', 'like', '%' . $title . '%');
         }
         if ($request->has('author')) {
-            $query->where('author', 'like', "%{$request->author}%");
+            $author = $request->input('author');
+            $query->where('author', 'like', "%{$author}%");
         }
         if ($request->has('category')) {
-            $query->where('category', 'like', "%{$request->category}%");
+            $category = $request->input('category');
+            $query->where('category', $category);
         }
 
-        // mengembalikan response json
-        return response()->json($query);
+        $books = $query->get();
+
+        if ($books->isEmpty()) {
+            return response()->json([
+                'message' => 'Tidak ada buku yang ditemukan dengan kriteria pencarian tersebut.'
+            ], 404);
+        }
+
+        return response()->json($books);
     }
 
     // GET /books/{id}

@@ -57,6 +57,8 @@ class AuthController extends Controller
         ]);
     }
 
+    
+
     public function logout()
     {
         try {
