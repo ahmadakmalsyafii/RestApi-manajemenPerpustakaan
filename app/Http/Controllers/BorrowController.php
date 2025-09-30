@@ -43,6 +43,12 @@ class BorrowController extends Controller
 
         $book->decrement('stock');
 
+        History::create([
+            'borrowing_id' => $borrowing->id,
+            'action' => 'borrow',
+            'action_date' => now()
+        ]);
+
         return response()->json([
             'message'=>'Book borrowed successfully',
             'data'=>$borrowing

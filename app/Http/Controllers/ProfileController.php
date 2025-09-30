@@ -35,9 +35,9 @@ class ProfileController extends Controller
 
         // Validasi input
         $validatedData = $request->validate([
-            'name' => 'sometimes|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => [
-                'sometimes',
+                'required',
                 'string',
                 'email',
                 'max:255',

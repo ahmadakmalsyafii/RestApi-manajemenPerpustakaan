@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+use PhpParser\Node\Stmt\TryCatch;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
@@ -14,16 +16,18 @@ class AuthController extends Controller
     //
     public function register(Request $request)
     {
-        //validate input
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
-        if ($request->fails()) {
-            return response()->json($request->errors(), 422);
+        try {
+            //validate input
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6|confirmed',
+            ]);
+        } catch (ValidationException $th) {
+            return response()->json(['error' => $th->getMessage()], 422);
         }
+
+
         //create user
         $user = User::create([
             'name' => $request->name,
@@ -57,7 +61,7 @@ class AuthController extends Controller
         ]);
     }
 
-    
+
 
     public function logout()
     {

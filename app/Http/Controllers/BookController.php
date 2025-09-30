@@ -38,7 +38,6 @@ class BookController extends Controller
         return response()->json($books);
     }
 
-    // GET /books/{id}
     public function show($id)
     {
         // validasi input
@@ -48,7 +47,6 @@ class BookController extends Controller
         return response()->json($book);
     }
 
-    // POST /books (admin only)
     public function store(Request $request)
     {
         $this->authorizeAdmin();
