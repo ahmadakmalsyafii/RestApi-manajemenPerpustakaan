@@ -36,7 +36,7 @@ class HistoryController extends Controller
             })->get();
 
         return response()->json([
-            'message' => 'Riwayat peminjaman user',
+            'message' => 'User borrowing history',
             'data' => $history
         ]);
 

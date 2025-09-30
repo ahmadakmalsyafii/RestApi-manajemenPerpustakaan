@@ -23,7 +23,7 @@ class ProfileController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Profil berhasil ditampilkan.',
+            'message' => 'Profile displayed successfully.',
             'data' => $user
         ]);
     }
@@ -70,7 +70,7 @@ class ProfileController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Profil berhasil diperbarui.',
+            'message' => 'Profile updated successfully.',
             'data' => $user
         ]);
     }
@@ -88,7 +88,7 @@ class ProfileController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Akun Anda telah berhasil dihapus.'
+            'message' => 'Your account has been successfully deleted.'
         ]);
     }
 }

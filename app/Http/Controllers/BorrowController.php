@@ -100,7 +100,7 @@ class BorrowController extends Controller
         }
 
         if ($borrowing->status === 'dikembalikan') {
-            return response()->json(['message' => 'Buku sudah dikembalikan sebelumnya'], 400);
+            return response()->json(['message' => 'The book has already been returned previously'], 400);
         }
 
         $borrowing->update([
@@ -116,7 +116,7 @@ class BorrowController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Buku berhasil dikembalikan',
+            'message' => 'Book returned successfully',
             'data' => $borrowing
         ]);
     }

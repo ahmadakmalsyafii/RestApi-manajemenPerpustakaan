@@ -31,7 +31,7 @@ class BookController extends Controller
 
         if ($books->isEmpty()) {
             return response()->json([
-                'message' => 'Tidak ada buku yang ditemukan dengan kriteria pencarian tersebut.'
+                'message' => 'No books found matching the search criteria.'
             ], 404);
         }
 

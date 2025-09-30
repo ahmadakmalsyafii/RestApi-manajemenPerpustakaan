@@ -19,7 +19,7 @@ class OverdueController extends Controller
             ->paginate(10);
 
         return response()->json([
-            'message' => 'Daftar semua keterlambatan pengembalian',
+            'message' => 'List of all overdue returns',
             'data' => $overdue
         ]);
     }
@@ -40,7 +40,7 @@ class OverdueController extends Controller
             ->get();
 
         return response()->json([
-            'message' => 'Daftar keterlambatan buku saya',
+            'message' => 'List of my overdue books',
             'data' => $overdue
         ]);
     }
@@ -57,7 +57,7 @@ class OverdueController extends Controller
             ->get();
 
         return response()->json([
-            'message' => 'Daftar keterlambatan user',
+            'message' => 'User overdue list',
             'data' => $overdue
         ]);
     }
