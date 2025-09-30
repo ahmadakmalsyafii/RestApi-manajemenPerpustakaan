@@ -11,7 +11,7 @@ class OverdueController extends Controller
     // 🔹 Semua overdue (admin only)
     public function index()
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         $overdue = Borrowing::with(['book', 'user'])
             ->where('due_date', '<', now())
@@ -48,7 +48,7 @@ class OverdueController extends Controller
     // 🔹 Overdue user tertentu (admin only)
     public function show($user_id)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         $overdue = Borrowing::with('book')
             ->where('user_id', $user_id)

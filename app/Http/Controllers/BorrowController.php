@@ -13,7 +13,7 @@ class BorrowController extends Controller
 {
     public function index()
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         $borrowings = Borrowing::with('book','user')->get();
 
@@ -52,7 +52,7 @@ class BorrowController extends Controller
     public function update(Request $request, $id)
     {
 
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         // validasi input
         $request->validate([
@@ -72,7 +72,7 @@ class BorrowController extends Controller
 
     public function destroy($id)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
 
         $borrowing = Borrowing::findOrFail($id);
@@ -117,7 +117,7 @@ class BorrowController extends Controller
 
     public function userBorrows($id)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         $userBorrows = Borrowing::with('book')->where('user_id',$id)->get();
 

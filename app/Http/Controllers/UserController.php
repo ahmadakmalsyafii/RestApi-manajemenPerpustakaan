@@ -10,7 +10,7 @@ class UserController extends Controller
     //
     public function index(Request $request)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
         //validate
         $user = User::all();
         return response()->json(['user' => $user], 200);
@@ -81,7 +81,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         // validasi input
         $user = User::findOrFail($id);
@@ -91,7 +91,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         // validasi input
         $request->validate([
@@ -117,7 +117,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         // validasi input
         $request->validate([
@@ -142,7 +142,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         // validasi input
         $user = User::findOrFail($id);

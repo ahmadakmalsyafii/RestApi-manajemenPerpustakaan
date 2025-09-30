@@ -27,7 +27,7 @@ class HistoryController extends Controller
     // GET /history/{user_id} → riwayat user tertentu (admin only)
     public function show($user_id)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         // Ambil history dengan relasi ke borrowing + book
         $history = History::with('borrowing.book')
@@ -67,7 +67,7 @@ class HistoryController extends Controller
     // PUT /history/{user_id} → koreksi log (admin only)
     public function update(Request $request, $user_id)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         // validasi input
         $request->validate([
@@ -92,7 +92,7 @@ class HistoryController extends Controller
     // DELETE /history/{id} → hapus log salah (admin only)
     public function destroy($id)
     {
-        // $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         $history = History::findOrFail($id);
         $history->delete();
