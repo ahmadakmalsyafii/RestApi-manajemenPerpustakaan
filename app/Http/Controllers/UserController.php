@@ -13,7 +13,7 @@ class UserController extends Controller
         $this->authorizeAdmin();
         //validate
         $user = User::all();
-        return response()->json(['user' => $user], 200);
+        return response()->json(['count'=> $user->count(),'user' => $user ], 200);
     }
 
     // {

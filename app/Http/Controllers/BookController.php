@@ -35,7 +35,10 @@ class BookController extends Controller
             ], 404);
         }
 
-        return response()->json($books);
+        return response()->json([
+            'count' => $books->count(),
+            'data' => $books
+        ]);
     }
 
     public function show($id)
