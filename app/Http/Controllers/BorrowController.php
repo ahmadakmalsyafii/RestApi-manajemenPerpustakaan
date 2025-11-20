@@ -30,6 +30,8 @@ class BorrowController extends Controller
 
         $borrowings = Borrowing::with('book')
             ->where('user_id', $user->id)
+            ->whereIn('status', ['dipinjam', 'terlambat'])
+            ->whereNull('return_date')
             ->get();
 
         return response()->json($borrowings);
@@ -120,7 +122,7 @@ class BorrowController extends Controller
 
         $borrowing->update([
             'status' => 'dikembalikan',
-            'return_date' => now(),
+            'return_date' => now()->toDateString(),
         ]);
 
 
