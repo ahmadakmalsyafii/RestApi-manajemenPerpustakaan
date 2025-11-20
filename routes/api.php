@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/ping', function () {
-return response()->json(['message' => 'pong']);
-});
+// Route::get('/ping', function () {
+// return response()->json(['message' => 'pong']);
+// });
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -30,6 +30,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('/borrow', [BorrowController::class, 'store']);
     Route::post('/return', [BorrowController::class, 'returnBook']);
+    Route::get('/borrow/me', [BorrowController::class, 'myBorrows']);
 
     Route::get('/history', [HistoryController::class, 'index']);
 

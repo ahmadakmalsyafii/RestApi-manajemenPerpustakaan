@@ -20,6 +20,21 @@ class BorrowController extends Controller
         return response()->json($borrowings);
     }
 
+    public function myBorrows()
+    {
+        $user = auth('api')->user();
+
+        if (!$user) {
+            return response()->json(['message' => 'Unauthenticated'], 401);
+        }
+
+        $borrowings = Borrowing::with('book')
+            ->where('user_id', $user->id)
+            ->get();
+
+        return response()->json($borrowings);
+    }
+
     public function store(Request $request)
     {
         // validasi input
