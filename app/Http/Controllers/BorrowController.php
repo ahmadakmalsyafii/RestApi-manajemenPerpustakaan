@@ -124,6 +124,7 @@ class BorrowController extends Controller
 
         $borrowing->update([
             'status' => 'dikembalikan',
+            'stock' => Book::find($borrowing->book_id)->increment('stock'),
             'return_date' => now()->toDateString(),
         ]);
 
