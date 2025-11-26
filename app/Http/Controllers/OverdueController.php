@@ -20,6 +20,7 @@ class OverdueController extends Controller
 
         return response()->json([
             'message' => 'List of all overdue returns',
+            'count' => $overdue->total(),
             'data' => $overdue
         ]);
     }

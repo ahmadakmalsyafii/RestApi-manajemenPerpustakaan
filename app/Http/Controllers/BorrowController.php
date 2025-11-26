@@ -17,7 +17,9 @@ class BorrowController extends Controller
 
         $borrowings = Borrowing::with('book','user')->get();
 
-        return response()->json($borrowings);
+        return response()->json([
+            "count" => $borrowings->count(),
+            "data" => $borrowings]);
     }
 
     public function myBorrows()
@@ -144,7 +146,10 @@ class BorrowController extends Controller
 
         $userBorrows = Borrowing::with('book')->where('user_id',$id)->get();
 
-        return response()->json($userBorrows);
+        return response()->json([
+            'count' => $userBorrows->count(),
+            'data' => $userBorrows
+        ]);
     }
 
     private function authorizeAdmin()
